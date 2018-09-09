@@ -52,6 +52,10 @@ public class Metaphone {
       substs.put(Pattern.compile("[íìîïÍÌÎÏ]"), "i");
       substs.put(Pattern.compile("[óòôõöÓÒÔÕÖ]"), "o");
       substs.put(Pattern.compile("[úùûüÚÙÛÜ]"), "u");
+      substs.put(Pattern.compile("[ñÑ]"), "n");
+      substs.put(Pattern.compile("[ç]"), "c");
+      substs.put(Pattern.compile("[ç]"), "c");
+      substs.put(Pattern.compile("[ß]"), "b");
    }
    private String phonized = "";
    private int index = 0;
@@ -87,6 +91,24 @@ public class Metaphone {
    public Metaphone(boolean toLowerCase, boolean accented) {
       this.lc = toLowerCase;
       this.accented = accented;
+   }
+
+   /**
+    * Return true if the result will be lower case.
+    *
+    * @return true if the result will be lower case
+    */
+   public boolean isLowerCase() {
+      return lc;
+   }
+
+   /**
+    * Return true if the language has accented characters.
+    *
+    * @return true if the language has accented characters
+    */
+   public boolean isAccented() {
+      return accented;
    }
 
    public static void main(String[] args) {
