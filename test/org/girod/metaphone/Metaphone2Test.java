@@ -1,7 +1,6 @@
 /*
 MIT License
 
-Copyright (c) 2014 Titus Wormer <tituswormer@gmail.com>
 Copyright (c) 2018 Hervé Girod <herve.girod@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,9 +34,9 @@ import org.junit.Test;
  *
  * @since 1.0
  */
-public class MetaphoneTest {
+public class Metaphone2Test {
 
-   public MetaphoneTest() {
+   public Metaphone2Test() {
    }
 
    @BeforeClass
@@ -60,89 +59,9 @@ public class MetaphoneTest {
     * Test of metaphone method.
     */
    @Test
-   public void testMetaphoneSpaces() {
-      System.out.println("MetaphoneTest : testMetaphoneSpaces");
-      Metaphone metaphone = new Metaphone();
-      String result = metaphone.metaphone(" f o ");
-      assertEquals("Result", "F", result);
-   }
-
-   /**
-    * Test of metaphone method.
-    */
-   @Test
-   public void testMetaphoneDigits() {
-      System.out.println("MetaphoneTest : testMetaphoneDigits");
-      Metaphone metaphone = new Metaphone();
-      String result = metaphone.metaphone("0f1o2");
-      assertEquals("Result", "F", result);
-   }
-
-   /**
-    * Test of metaphone method.
-    */
-   @Test
-   public void testMetaphoneNoLetters() {
-      System.out.println("MetaphoneTest : testMetaphoneNoLetters");
-      Metaphone metaphone = new Metaphone();
-      String result = metaphone.metaphone("0 1 2");
-      assertEquals("Result", "", result);
-   }
-
-   /**
-    * Test of metaphone method.
-    */
-   @Test
-   public void testMetaphoneAdjacentLetters() {
-      System.out.println("MetaphoneTest : testMetaphoneAdjacentLetters");
-      Metaphone metaphone = new Metaphone();
-      String result = metaphone.metaphone("Agrippa");
-      assertEquals("Result", "AKRP", result);
-   }
-
-   /**
-    * Test of metaphone method.
-    */
-   @Test
-   public void testMetaphoneInitialLetters() {
-      System.out.println("MetaphoneTest : testMetaphoneInitialLetters");
-      Metaphone metaphone = new Metaphone();
-
-      String result = metaphone.metaphone("oo");
-      assertEquals("Result", "O", result);
-
-      result = metaphone.metaphone("ee");
-      assertEquals("Result", "E", result);
-   }
-
-   /**
-    * Test of metaphone method.
-    */
-   @Test
    public void testMetaphoneVarious() {
-      System.out.println("MetaphoneTest : testMetaphoneVarious");
-      Metaphone metaphone = new Metaphone();
-
-      String result = metaphone.metaphone("abandonware");
-      assertEquals("Result", "ABNTNWR", result);
-
-      result = metaphone.metaphone("hiccups");
-      assertEquals("Result", "HKKPS", result);
-
-      result = metaphone.metaphone("pneumatics");
-      assertEquals("Result", "NMTKS", result);
-
-      result = metaphone.metaphone("aerial");
-      assertEquals("Result", "ERL", result);
-   }
-
-   /**
-    * Test of metaphone method.
-    */
-   @Test
-   public void testMetaphoneVarious2() {
-      System.out.println("MetaphoneTest : testMetaphoneVarious2");
-      Metaphone metaphone = new Metaphone();
+      System.out.println("Metaphone2Test : testMetaphoneVarious");
+      Metaphone metaphone = new Metaphone(false, true);
 
       String result = metaphone.metaphone("michael");
       assertEquals("Result", "MXL", result);
@@ -171,8 +90,8 @@ public class MetaphoneTest {
     */
    @Test
    public void testMetaphoneAccented() {
-      System.out.println("MetaphoneTest : testMetaphoneAccented");
-      Metaphone metaphone = new Metaphone();
+      System.out.println("Metaphone2Test : testMetaphoneAccented");
+      Metaphone metaphone = new Metaphone(false, true);
 
       String result = metaphone.metaphone("là");
       assertEquals("Result", "L", result);
@@ -181,6 +100,6 @@ public class MetaphoneTest {
       assertEquals("Result", "HRF", result);
 
       result = metaphone.metaphone("Lucélia");
-      assertEquals("Result", "LKL", result);
+      assertEquals("Result", "LSL", result);
    }
 }

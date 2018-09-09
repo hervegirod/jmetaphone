@@ -26,7 +26,11 @@ package org.girod.metaphone;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.PropertyResourceBundle;
+import java.util.regex.Pattern;
 
 /**
  * A Metaphone class for English language.
@@ -40,6 +44,15 @@ import java.util.PropertyResourceBundle;
  * @since 1.0
  */
 public class Metaphone {
+   private static Map<Pattern, String> substs = new HashMap<>();
+
+   static {
+      substs.put(Pattern.compile("[âãáàäÂÃÁÀÄ]"), "a");
+      substs.put(Pattern.compile("[éèêëÉÈÊË]"), "e");
+      substs.put(Pattern.compile("[íìîïÍÌÎÏ]"), "i");
+      substs.put(Pattern.compile("[óòôõöÓÒÔÕÖ]"), "o");
+      substs.put(Pattern.compile("[úùûüÚÙÛÜ]"), "u");
+   }
    private String phonized = "";
    private int index = 0;
    private int skip = 0;
@@ -47,12 +60,13 @@ public class Metaphone {
    private final char sh = 'X';
    private final char th = '0';
    private boolean lc = false;
+   private boolean accented = false;
 
    /**
     * Default Constructor. The result will be upper case.
     */
    public Metaphone() {
-      this(false);
+      this(false, false);
    }
 
    /**
@@ -62,6 +76,17 @@ public class Metaphone {
     */
    public Metaphone(boolean toLowerCase) {
       this.lc = toLowerCase;
+   }
+
+   /**
+    * Constructor.
+    *
+    * @param toLowerCase true if the result will be lower case
+    * @param accented true if the language has accented characters
+    */
+   public Metaphone(boolean toLowerCase, boolean accented) {
+      this.lc = toLowerCase;
+      this.accented = accented;
    }
 
    public static void main(String[] args) {
@@ -77,6 +102,15 @@ public class Metaphone {
       }
    }
 
+   private String removeAccents(String value) {
+      for (Entry<Pattern, String> subst : substs.entrySet()) {
+         Pattern accents = subst.getKey();
+         String noAccent = subst.getValue();
+         value = accents.matcher(value).replaceAll(noAccent);
+      }
+      return value;
+   }
+
    /**
     * Get the phonetics according to the original Metaphone algorithm from a value.
     *
@@ -87,7 +121,11 @@ public class Metaphone {
       phonized = "";
       index = 0;
       skip = 0;
-      this.value = value;
+      if (accented) {
+         this.value = removeAccents(value);
+      } else {
+         this.value = value;
+      }
 
       // Find our first letter
       while (!Character.isLetter(current())) {
