@@ -22,8 +22,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package org.metaphone;
+package org.girod.metaphone;
 
+import org.girod.metaphone.Metaphone;
 import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.AfterClass;

@@ -22,7 +22,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package org.metaphone;
+package org.girod.metaphone;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.PropertyResourceBundle;
 
 /**
  * A Metaphone class for English language.
@@ -58,6 +62,19 @@ public class Metaphone {
     */
    public Metaphone(boolean toLowerCase) {
       this.lc = toLowerCase;
+   }
+
+   public static void main(String[] args) {
+      URL url = Metaphone.class.getResource("metaphone.properties");
+      try {
+         PropertyResourceBundle prb = new PropertyResourceBundle(url.openStream());
+         String version = prb.getString("version");
+         String date = prb.getString("date");
+         System.out.println("jMetaphone version " + version + " build on " + date);
+         System.out.println("Distributed under the MIT License");
+      } catch (IOException ex) {
+         ex.printStackTrace();
+      }
    }
 
    /**
