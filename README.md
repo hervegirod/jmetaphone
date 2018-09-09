@@ -1,6 +1,10 @@
 # jmetaphone
 A Java port of the https://github.com/words/metaphone Javascript repository
 
+There are two options for the Metaphone result:
+* Uppercase (the default), or Lowercase
+* Without processing accented characters (the default), or with processing accented characters
+
 Use:
 
 ```java
