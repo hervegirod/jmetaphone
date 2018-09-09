@@ -27,6 +27,12 @@ package org.metaphone;
 /**
  * A Metaphone class for English language.
  *
+ * <h1>Usage</h1>
+ * <pre>
+ * Metaphone metaphone = new Metaphone();
+ * String result = metaphone.metaphone("michael"); // should be "MXL"
+ * </pre>
+ *
  * @since 1.0
  */
 public class Metaphone {
