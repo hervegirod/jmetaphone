@@ -135,4 +135,34 @@ public class MetaphoneTest {
       result = metaphone.metaphone("aerial");
       assertEquals("Result", "ERL", result);
    }
+
+   /**
+    * Test of metaphone method.
+    */
+   @Test
+   public void testMetaphoneVarious2() {
+      System.out.println("MetaphoneTest : testMetaphoneVarious2");
+      Metaphone metaphone = new Metaphone();
+
+      String result = metaphone.metaphone("michael");
+      assertEquals("Result", "MXL", result);
+
+      result = metaphone.metaphone("crevalle");
+      assertEquals("Result", "KRFL", result);
+
+      result = metaphone.metaphone("Filipowitz");
+      assertEquals("Result", "FLPWTS", result);
+
+      result = metaphone.metaphone("Xavier");
+      assertEquals("Result", "SFR", result);
+
+      result = metaphone.metaphone("delicious");
+      assertEquals("Result", "TLSS", result);
+
+      result = metaphone.metaphone("acceptingness");
+      assertEquals("Result", "AKSPTNKNS", result);
+
+      result = metaphone.metaphone("allegrettos");
+      assertEquals("Result", "ALKRTS", result);
+   }
 }
